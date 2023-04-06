@@ -18,3 +18,9 @@ var modelOfGuitar = "PRS Sliver Sky";
 // 0부터 시작 , 예를 들어 modelOfGuitar에서 "P"만 잘라내고 싶다면
 // modelOfGuitar.slice(0,1);
 console.log(modelOfGuitar.slice(0,3));
+
+// 제한 되는 글자까지만 출력하도록 하는 예제
+var limitOfArticle = 20; // article은 20자 제한
+var article = "HI MY NAME IS HYUN!!, NOW I'M LEARNING STRING METHODS OF JAVASCRIPT.";
+var articleOutput = article.slice(0,limitOfArticle);
+console.log(articleOutput);
