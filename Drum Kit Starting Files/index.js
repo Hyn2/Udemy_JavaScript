@@ -1,11 +1,49 @@
-// addEventListener는 지정한 이벤트를 대상이 수신할 때마다 호출할 함수를 정함.
-// 첫 번째 매개변수는 이벤트 유형을 지정, 두 번째 매개변수는 이벤트 발생 시 호출할 함수
-// 함수에 괄호를 빼고 선언하는데, 이는 이벤트가 발생했을 때 함수를 실행시키기 위함,
-// 괄호를 넣으면 이벤트 리스너 코드를 읽음과 동시에 바로 실행이 되어버리기 때문
-let button = document.querySelectorAll("button");
-for(let i in button) {
-  button[i].addEventListener("click", function() { alert("Clicked") });
+let buttonLength = document.querySelectorAll(".drum").length;
+
+
+// for문으로 반복하여 모든 버튼에 이벤트 리스너를 추가시킴
+function whenKeyPressed(key) {
+  switch(key) {
+    case 'w' :
+      let tom1 = new Audio("sounds/tom-1.mp3");
+      tom1.play();
+    break;
+    case 'a' :
+      let tom2 = new Audio("sounds/tom-2.mp3");
+      tom2.play();
+    break;
+    case 's' :
+      let tom3 = new Audio("sounds/tom-3.mp3");
+      tom3.play();
+    break;
+    case 'd' :
+      let tom4 = new Audio("sounds/tom-4.mp3");
+      tom4.play();
+    break;
+    case 'j' :
+      let snare = new Audio("sounds/snare.mp3");
+      snare.play();
+    break;
+    case 'k' :
+      let crash = new Audio("sounds/crash.mp3");
+      crash.play();
+    break;
+    case 'l' :
+      let kick = new Audio("sounds/kick-bass.mp3");
+      kick.play();
+    break;
+  }
 }
+
+for(let i; i < buttonLength; i++) {
+  document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+    let drumSelector = this.innerHTML;
+    whenKeyPressed(drumSelector);
+  });
+    // 여기서 This는 이벤트 리스너를 발생시킨 요소
+};
+
+document.addEventListener("keypress", function() { alert("press") });
 // 익명함수를 이용
 // 함수를 따로 선언하는 것보다 코드가 간결해진다
 // document.querySelector("button").addEventListener("click", function () { alert("i got clicked") });
