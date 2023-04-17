@@ -2,7 +2,7 @@ let buttonLength = document.querySelectorAll(".drum").length;
 
 
 // for문으로 반복하여 모든 버튼에 이벤트 리스너를 추가시킴
-function whenKeyPressed(key) {
+function buttonSound(key) {
   switch(key) {
     case 'w' :
       let tom1 = new Audio("sounds/tom-1.mp3");
@@ -35,15 +35,28 @@ function whenKeyPressed(key) {
   }
 }
 
-for(let i; i < buttonLength; i++) {
-  document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+function buttonAnimation(currentKey) {
+  let activeButton =   document.querySelector("."+currentKey);
+  activeButton.classList.add('pressed');
+  setTimeout(function() {
+    activeButton.classList.remove('pressed');
+  }, 100)
+};
+
+for(let i = 0; i < buttonLength; i++) {
+  document.querySelectorAll(".drum")[i].addEventListener("click", function() {  
     let drumSelector = this.innerHTML;
-    whenKeyPressed(drumSelector);
+    buttonSound(drumSelector);
+    buttonAnimation(drumSelector);
   });
     // 여기서 This는 이벤트 리스너를 발생시킨 요소
 };
 
-document.addEventListener("keypress", function() { alert("press") });
+document.addEventListener("keypress", function(event) { 
+  buttonSound(event.key);
+  buttonAnimation(event.key);
+});
 // 익명함수를 이용
 // 함수를 따로 선언하는 것보다 코드가 간결해진다
 // document.querySelector("button").addEventListener("click", function () { alert("i got clicked") });
+
